@@ -4,13 +4,13 @@ services:
   app:
     build: .
     ports:
-      - '8083:8083'
+      - '${PORT}:${PORT}'
+    environment:
+      - ME_CONNECTION_STRING=${ME_CONNECTION_STRING}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - PORT=${PORT}
     depends_on:
       - mongo
-    environment:
-      MONGODB_URI: mongodb://mongo:27017/mydatabase
-    volumes:
-      - .:/usr/src/app
 
   mongo:
     image: mongo:4.4
@@ -24,10 +24,11 @@ services:
     environment:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_DB_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_DB_PASSWORD}
+      ME_CONFIG_MONGODB_URL: ${ME_CONNECTION_STRING}
     ports:
-      - '8082:8081' 
+      - '8082:8081'
     depends_on:
       - mongo
 
