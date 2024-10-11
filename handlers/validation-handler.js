@@ -49,7 +49,7 @@ export const validateEmp = () => {
                     throw new Error('Employee department can not have digits.');
                 }
                 return true;
-            }),
+        })
     ];
 };
 
