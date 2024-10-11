@@ -71,7 +71,7 @@ export async function deleteEmpRoute(app, employeeCollection) {
 
         try {
             const deleteEmp = await deleteEmployee(eid, employeeCollection);
-            res.status(204).json({ message: 'Employee deleted successfully. ', deleteEmp })
+            res.status(200).json({ message: 'Employee deleted successfully. ', deleteEmp })
         } catch (e) {
             errHandle(null, 'Error deleting employee: ' + e);
         }

@@ -22,7 +22,7 @@ export async function createUser(username, email, password, collection) {
         await collection.insertOne(insertNewUser);
         return insertNewUser;
     } catch (e) {
-        errHandle(null, 'Error creating new user: ' + e);
+        throw new Error;
     }
 }
 
@@ -30,18 +30,23 @@ export async function createUser(username, email, password, collection) {
 export async function userLogin(email_username, password, collection) {
     try {
         const verifyUser = await collection.findOne({ 
-            // user can use email OR username for verification
             $or: [
                 { email: email_username },
                 { username: email_username }
             ]
-         });
+        });
 
-        if (verifyUser && await bcrypt.compare(password, verifyUser.password)) {
-            console.log('login successful')
+        if (!verifyUser) {
+            throw new Error;
         }
-    } catch (e) {
-        errHandle(null, 'Login failed: ' + e);
-    } 
-}
 
+        const isPasswordValid = await bcrypt.compare(password, verifyUser.password);
+        if (!isPasswordValid) {
+            throw new Error;
+        }
+
+        return verifyUser;
+    } catch (e) {
+        throw new Error;
+    }
+}

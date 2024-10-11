@@ -51,7 +51,7 @@ export async function readEmpById(_id, collection) {
     }
 }
 
-// update
+// update employee 
 export async function updateEmployee(_id, fname, lname, email, position, salary, 
     department, collection) {
     try {

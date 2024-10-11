@@ -30,7 +30,8 @@ export async function verifyUserRoute(app, userCollection) {
             await userLogin(email_username, password, userCollection);
             res.status(200).json({ message: 'Login successful.' });
         } catch (e) {
-            errHandle(null, 'Error verifying user: ' + e);
+            return res.status(401).json({ message: 'Login failed.' });
         }
     });
 }
+
