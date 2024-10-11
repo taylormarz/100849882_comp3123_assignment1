@@ -93,10 +93,10 @@ export async function deleteEmpRoute(app, employeeCollection) {
             // call delete emp by id func from employee.js
             const deleteEmp = await deleteEmployee(eid, employeeCollection);
             // success response
-            res.status(200).json({ message: 'Employee deleted successfully. ', deleteEmp })
+            res.status(200).json({ message: 'Employee deleted successfully. ', deleteEmp });
         } catch (e) {
             // err handler func incase error occurs
             errHandle(null, 'Error deleting employee: ' + e);
         }
-    })
+    });
 }
