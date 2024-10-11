@@ -1,7 +1,6 @@
 // functions and routes for users
 // CRUD operations
 import { ObjectId } from 'mongodb';
-import { errHandle } from '../handlers/error-handler.js';
 import bcrypt from 'bcrypt';
 
 // create new user
