@@ -1,7 +1,7 @@
 // verification.js
 import { body, validationResult } from 'express-validator';
 
-// employee validation
+// employee validation func so to keep code in modules/routes cleaner
 export const validateEmp = () => {
     return [
         body('first_name')
@@ -53,9 +53,7 @@ export const validateEmp = () => {
     ];
 };
 
-
-
-// user validation
+// user validation func so to keep code in modules/routes cleaner
 export const validateUser = () => {
     return [
         body('username')
@@ -70,7 +68,7 @@ export const validateUser = () => {
     ];
 };
 
-// err handling
+// err handling func so to keep code in modules/routes cleaner
 export const validationErr = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -81,4 +79,3 @@ export const validationErr = (req, res, next) => {
     }
     next();
 };
-
